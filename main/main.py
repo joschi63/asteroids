@@ -7,10 +7,13 @@ from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
 
+from customtext import CustomText as cT
+
 def main():
     pygame.init()
     clock = pygame.time.Clock()
     dt = 0.0
+    points = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     
@@ -29,7 +32,12 @@ def main():
     shots = pygame.sprite.Group()
     Shot.containers = (shots, updatable, drawable)
 
+    schrift = pygame.font.SysFont(None, 36)
+    text = schrift.render(f"Score: {points}", True, (255, 255, 255))
 
+    text_rect = text.get_rect(topright=(SCREEN_WIDTH - 50, 10))
+
+   
 
     while True:
         for event in pygame.event.get():
@@ -48,15 +56,17 @@ def main():
                 if asteroid.collision(shot):
                     shot.kill()
                     asteroid.split()
+                    points += 1
+                    cT.score_text(screen, points)
                     continue
         
                 
-
+        cT.score_text(screen, points)
         for drawl in drawable:
             drawl.draw(screen) 
 
         
-        
+         # Draw the text on the screen
         pygame.display.flip()  # Update the display
 
         clock.tick(60)
