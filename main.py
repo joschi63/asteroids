@@ -4,7 +4,8 @@ from constants import *
 
 def main():
     pygame.init()
-
+    clock = pygame.time.Clock()
+    dt = 0.0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     while True:
@@ -14,6 +15,9 @@ def main():
         screen.fill((0, 0, 0))  # Clear the screen with black
 
         pygame.display.flip()  # Update the display
+
+        clock.tick(60)
+        dt = clock.get_time() / 1000.0
 
     """
     print("Starting Asteroids!")
