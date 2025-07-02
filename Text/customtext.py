@@ -1,6 +1,6 @@
 import pygame
 
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from game_logic.constants import SCREEN_WIDTH, SCREEN_HEIGHT
 
 class CustomText:
     def score_text(screen, points):

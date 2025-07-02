@@ -1,13 +1,13 @@
 import pygame
 import sys
 
-from constants import *
-from player import Player
-from asteroid import Asteroid
-from asteroidfield import AsteroidField
-from shot import Shot
+from game_logic.constants import *
+from game_logic.player import Player
+from game_logic.asteroid import Asteroid
+from game_logic.asteroidfield import AsteroidField
+from game_logic.shot import Shot
 
-from customtext import CustomText as cT
+from text.customtext import CustomText as cT
 
 def main():
     pygame.init()
