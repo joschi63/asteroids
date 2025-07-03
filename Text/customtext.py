@@ -8,3 +8,9 @@ class CustomText:
         text = schrift.render(f"Score: {points}", True, (255, 255, 255))
         text_rect = text.get_rect(topright=(SCREEN_WIDTH - 50, 10))
         screen.blit(text, text_rect)
+
+    def lifes_text(screen, lifes):
+        schrift = pygame.font.SysFont(None, 36)
+        text = schrift.render(f"Lifes: {lifes}", True, (255, 255, 255))
+        text_rect = text.get_rect(topleft=(50, 10))
+        screen.blit(text, text_rect)

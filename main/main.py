@@ -14,6 +14,8 @@ def main():
     clock = pygame.time.Clock()
     dt = 0.0
     points = 0
+    lifes = 1
+    last_life_points = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     
@@ -50,18 +52,30 @@ def main():
 
         for asteroid in asteroids:
             if asteroid.collision(player):
-                sys.exit(f"Game Over! \nDein Score waren {points} Punkte")
-            
+                
+                if lifes >= 1:
+                    player = player.relive()
+                    lifes -= 1
+                else:
+                    sys.exit(f"Game Over! \nDein Score waren {points} Punkte")
+
+                break
+
             for shot in shots:
                 if asteroid.collision(shot):
                     shot.kill()
                     asteroid.split()
                     points += 1
+                    if points % 10 == 0:
+                        if last_life_points != points:
+                            lifes += 1
+                            last_life_points = points
                     cT.score_text(screen, points)
                     continue
         
                 
         cT.score_text(screen, points)
+        cT.lifes_text(screen, lifes)
         for drawl in drawable:
             drawl.draw(screen) 
 
